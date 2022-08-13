@@ -14,13 +14,6 @@ shoplist.list=[
   {name: "肥皂",price: 50}
 ];
 
-// itemslist=["吹風機","鏡子","牙刷","肥皂"];
-
-// shoplist={
-//   name: "",
-//   list: ["吹風機","鏡子","牙刷","肥皂"],
-// };
-
 $.ajax({
   url: itemurl,
   success: function(res){
@@ -34,7 +27,7 @@ $.ajax({
 
 // -----
 //定義元素用的html模板，{{名稱}}代表要套入的地方
-var item_html="<li id={{id}} class='buy_item'>{{num}}.{{item}}<div class='price'>{{price}}</div><div id={{del_id}} data-delid={{del_item_id}} class='del_btn'>✘</div></li>";
+var item_html="<li id={{id}} class='buy_item'>{{num}}.{{item}}<hr class='dashed'/><div class='price'>{{price}}</div><div id={{del_id}} data-delid={{del_item_id}} class='del_btn'>✘</div></li>";
 
 var total_html="<li class='buy_item total'>總價<div class='price'>{{price}}</div></li>";
 
@@ -97,3 +90,16 @@ function remove_item(id){
   shoplist.list.splice(id,1);
   showlist();
 }
+//進場動態
+(function ($) {
+    $('body').addClass('variant-strm_light');/*先綁隱藏的CSS*/
+    $(document)
+        .ready(function () {
+          setTimeout(function () {
+              $('body').removeClass('variant-strm_light');
+          }, 1200);/*於1.2秒時拿掉隱藏用CSS*/
+          setTimeout(function () {
+              $('#items_list').removeClass('start');
+          }, 2000);
+        });
+})(jQuery);
