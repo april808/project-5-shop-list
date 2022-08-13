@@ -1,3 +1,6 @@
+// ajax資料
+var itemurl="https://awiclass.monoame.com/api/command.php?type=get&name=itemdata";
+// ------
 //新增一個商品清單的物件
 var shoplist={};
 shoplist.name="MyBuylist 購物清單";
@@ -18,7 +21,18 @@ shoplist.list=[
 //   list: ["吹風機","鏡子","牙刷","肥皂"],
 // };
 
+$.ajax({
+  url: itemurl,
+  success: function(res){
+    shoplist.list=JSON.parse(res);
+    showlist();
+  }
+  
+});
 
+
+
+// -----
 //定義元素用的html模板，{{名稱}}代表要套入的地方
 var item_html="<li id={{id}} class='buy_item'>{{num}}.{{item}}<div class='price'>{{price}}</div><div id={{del_id}} data-delid={{del_item_id}} class='del_btn'>✘</div></li>";
 
