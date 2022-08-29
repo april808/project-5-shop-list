@@ -1,0 +1,274 @@
+$color_black: #444
+$color_yellow: #ffe4b5
+$color_primary: #42b2db
+$color_white: #f3f3f3
+$color_tag: #ffb657
+
+// ----
+$MyBuylist_width: 650px
+$list_padding: 14px
+$note-book_width: 200px
+// ----
+@mixin posiAb($l,$t)
+  position: absolute
+  left: $l
+  top: $t
+  transform: translate(-50%,-50%)
+@mixin flexcenter
+  display: flex
+  justify-content: center
+  align-items: center
+@mixin tran-dur
+  transition: 0.5s
+@mixin box-box
+  box-sizing: border-box
+*
+  // border: solid 1px
+  position: relative
+  font-family: 'Anybody', sans-serif , "微軟正黑體"
+
+html,body
+  width: 100%
+  height: 100%
+  margin: 0
+  +flexcenter
+  background-color: $color_yellow
+  
+#buylist
+  display: inline-block
+  padding: $list_padding
+  background-color: #f3f3f3
+  border: solid 4px $color_black
+  border-radius: 15px
+  background-color: $color_white
+  box-shadow: 0px 0px 30px rgba(0,0,0,0.2)
+  max-width: $MyBuylist_width
+  .inner
+    +flexcenter
+    padding: 0
+h1
+  padding: 10px $list_padding
+  margin-top: -$list_padding
+  margin-left: -$list_padding
+  margin-right: -$list_padding
+  margin-bottom: $list_padding
+
+  border-radius: 11px 11px 0 0
+  border-bottom: solid 4px $color_black
+  box-sizing: border-box
+  background-color: $color_primary
+  color: $color_white
+  font-weight: 600
+  
+#items_list
+  padding: 5px
+  
+.buy_item
+  padding: 5px
+  list-style: none
+  border: solid 3px $color_black
+  font-weight: 900
+  +box-box
+  
+  & input
+    width: 100px
+    border: solid 3px
+    padding: 2px
+    
+  & .price
+    display: inline-block
+    position: relative
+    padding-left: 8px
+    padding-right: 8px
+    background-color: $color_tag
+    box-shadow: 4px 2px 0px rgba(0,0,0,0.5)
+    &::before
+      content: "$ "
+    
+  & .addbtn
+    margin-top: 10px
+    padding: 5px
+    padding-left: 2px
+    text-align: center
+    cursor: pointer
+    border: solid 3px $color_black
+    border-radius: 10px
+    &:hover
+      background-color: $color_primary
+      color: white
+    &:active/* 是滑鼠點擊元素的狀態 */
+      // animation: ani1 0.3s 1
+      // animation-delay: 0s
+  & .del_btn
+    display: inline-block
+    position: absolute
+    padding: 0px 6px
+    right: 0px
+    top: 5px
+    cursor: pointer
+    
+    color: #f24
+    &:hover
+      background-color: $color_primary
+      color: white
+
+    
+// 筆記本樣式
+.note-book
+  width: $note-book_width
+  min-width: 100px
+  margin: 0 auto
+  background: #FEF9E7
+  padding: 5px 5px
+  border-radius: 4px
+  box-shadow: 0 0 4px #B2BABB
+  +box-box
+  .cntr
+    /* 實現橫線效果 */
+    background: linear-gradient(transparent 95%, #424949 0)
+    line-height: 1.5em
+    background-size: 100% 1.5em
+    background-attachment: local /*  這裡需要根據 textarea 的內容進行滾動 */
+    /* textarea樣式修改 */
+    width: 100%
+    min-width: calc($note-book_width - 10px)
+    resize: none
+    font-size: 0.9em
+    font-family: inherit
+    outline: none
+    border: none
+    color: #2874A6
+    word-break: break-all
+    overflow-x: hidden
+    +box-box
+
+.note li /* 筆記本清單 */
+  // width: calc(100% / 2 - 2px)
+  // min-width: 100px
+  margin: 0 auto
+  margin-bottom: 6px
+  margin-right: 5px
+  padding-left: 10px
+  padding-right: 20px
+  background: #FEF9E7
+  // padding: 10px 18px
+  border-radius: 4px
+  box-shadow: 0 0 4px #B2BABB
+  display: inline-block
+  vertical-align: top
+  hr.dashed
+    height: 1px
+    background: linear-gradient(to right, #2874A6, #2874A6 4.67px, transparent 4.67px, transparent)
+    background-size: 7px 1px
+    border: none
+    
+    
+.control_panel /* 新增與控制項 */
+  padding: 20px
+  margin: 0 auto
+  border: 0
+.buy_item.total
+  background-color: $color_primary
+  border: solid 3px $color_primary
+  color: $color_white
+  box-shadow: 0 0 0
+  display: block
+  width: 100%
+  margin-bottom: 0
+  padding: 10px
+  margin: 0
+  +box-box
+  & .price
+    background-color: transparent
+    position: absolute
+    top: 12px
+    bottom: 12px
+    right: 15px
+    
+// 動態
+.inner
+  transition: 1s
+  opacity: 1
+  
+.inner .note
+  > li
+    transition: 0.3s
+    transform: translateY(0)
+    opacity: 1
+    > .del_btn
+      transition: 0.3s
+    &:hover
+      border: solid 3px $color_primary
+      transform: translateY(-1em)
+      box-shadow: 0px 3px 10px rgba(black,0.5)
+      z-index: 9
+      transition-delay: 0s
+    &:hover .del_btn
+      animation: aniinf 0.5s infinite
+    
+// 進場動態
+body.variant-strm_light .inner .note > li
+  opacity: 0
+  transform: translateY(2em)
+// 初始隱藏
+body.variant-strm_light #buylist
+  > .inner
+    opacity: 0
+  
+.start.note > li
+    &:first-child
+      transition-delay: 0.45s
+    &:nth-child(2)
+      transition-delay: 0.65s
+    &:nth-child(3)
+      transition-delay: 0.85s
+    &:nth-child(4)
+      transition-delay: 1.05s
+    &:nth-child(5)
+      transition-delay: 1.25s
+    &:nth-child(6)
+      transition-delay: 1.45s
+    &:nth-child(7)
+      transition-delay: 1.65s
+    
+// 使li總價 hover不反應
+li.buy_item.total
+  opacity: 1
+  &:hover
+    opacity: 1
+    transform: translateY(0)
+    box-shadow: 0 0 0
+  
+
+// 動畫animation 添加
+.ani_once
+  animation: ani1 0.3s 1
+.ani_once2
+  animation: ani2 0.6s 1
+.aniinf
+  animation: aniinf 2s 1
+  
+@keyframes ani1
+  0%
+    transform: translateY(2em)
+    opacity: 0
+  100%
+    transform: translateY(0)
+    opacity: 1
+@keyframes ani2
+  0%
+    transform: scale(1.2)
+    opacity: 1
+  90%
+    transform: scale(0)
+    opacity: 0
+  100%
+    transform: scale(0)
+    opacity: 0
+@keyframes aniinf
+  0%
+    transform: scale(1.5)
+    opacity: 1
+  100%
+    transform: scale(1)
+    opacity: 1

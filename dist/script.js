@@ -86,7 +86,7 @@ $(".addbtn").click(
         price:$("#input_price").val()
       }
     );
-    $("#input_name").val("");
+    $("#input_name").val("");//給完資料後清空value
     $("#input_price").val("");
     showlist();
     /*顯示showlist()後-添加新增li動畫*/
