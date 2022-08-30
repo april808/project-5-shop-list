@@ -1,4 +1,4 @@
-# shop-list
+# Shop List - 購物車清單與筆記
 
 A Pen created on CodePen.io.
 
