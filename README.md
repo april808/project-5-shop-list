@@ -1,11 +1,11 @@
-# Shop List - 購物車清單與筆記
+# Project 5 - Shop List(購物車清單與筆記)
 
 A Pen created on CodePen.io.
 
 預覽：
 
 1. CodePen URL: [https://codepen.io/april808/pen/dymZeej](https://codepen.io/april808/pen/dymZeej).
-1. GitHub: [https://april808.github.io/shop-list/dist/index.html](https://april808.github.io/shop-list/dist/index.html)
+1. GitHub: [https://april808.github.io/project-5-shop-list/dist/index.html](https://april808.github.io/project-5-shop-list/dist/index.html)
 
 說明：
 
